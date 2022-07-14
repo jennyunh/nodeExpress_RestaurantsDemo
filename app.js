@@ -32,7 +32,20 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended: false}))
 
 app.get("/restaurants", function (req, res) {
-    res.render('restaurants')
+
+    const filePath = path.join(__dirname, 'data', 'restaurants.json')
+
+    //file data is in text format
+    const fileData = fs.readFileSync(filePath);
+    
+    //convert file data to js format
+    const storedRestaurants = JSON.parse(fileData)
+
+
+    //2nd parameter for render is optional:
+    //pass in an object that refers to any variables used in the template
+    res.render('restaurants', { numberOfRestaurants: storedRestaurants.length } )
+
 });
 
 app.get("/about", function (req, res) {

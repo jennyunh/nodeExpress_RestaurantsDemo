@@ -50,6 +50,11 @@
     <main>
       <h1>Recommended restaurants</h1>
       <p>Find your next favorite restaurants with help of our other users!</p>
+      <!-- Dynamically pass the # of restaurants to the ejs syntax variable.
+        ejs engine will parse this variable.
+      Pass the value to the variable in app.js
+      -->
+      <p>We found <%= numberOfRestaurants %> restaurants</p>
       <ul id="restaurants-list">
         <li class="restaurant-item">
           <article>
