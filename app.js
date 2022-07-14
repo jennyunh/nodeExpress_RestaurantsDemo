@@ -8,6 +8,19 @@ const express = require("express");
 
 const app = express();
 
+//tells express where the template files 
+//we want to process with ejs engine are located
+//'views' must be used (reserved on express)
+//2nd parameter is the path to the folder that contains the template files
+app.set('views', path.join(__dirname, 'views'))
+
+//to use templates, download ejs engine.
+//rename all html template files from .html to .ejs
+//view engine: use a special engine (template engine) for processing our view files
+//pass name of engine to use: ejs
+app.set('view engine', 'ejs')
+
+
 //middleware for serving static files: like js and css files linked to html files
 //below sets up a request handler that will be executed on every incoming request
 //static method takes a parameter: the name of the folder that has the static files
@@ -19,23 +32,26 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended: false}))
 
 app.get("/restaurants", function (req, res) {
-  const htmlFilePath = path.join(__dirname, "views", "restaurants.html");
-  res.sendFile(htmlFilePath);
+    res.render('restaurants')
 });
 
 app.get("/about", function (req, res) {
-  const htmlFilePath = path.join(__dirname, "views", "about.html");
-  res.sendFile(htmlFilePath);
+    res.render('about')
 });
 
 app.get("/confirm", function (req, res) {
-  const htmlFilePath = path.join(__dirname, "views", "confirm.html");
-  res.sendFile(htmlFilePath);
+    res.render('confirm')
 });
 
 app.get("/", function (req, res) {
-  const htmlFilePath = path.join(__dirname, "views", "index.html");
-  res.sendFile(htmlFilePath);
+
+    //render is a method on response object that renders the html template
+    //that the ejs engine returns after it has processed the ejs file.
+    //res.render takes the name of the ejs file 
+    //(in this case, index.ejs), but render knows that it should look for .ejs
+    //because the engine is ejs
+    res.render('index')
+
 });
 
 
@@ -44,8 +60,7 @@ app.get("/", function (req, res) {
 //You can have more than one method for a route as long as the methods are
 //different (get vs post)
 app.get("/recommend", function (req, res) {
-  const htmlFilePath = path.join(__dirname, "views", "recommend.html");
-  res.sendFile(htmlFilePath);
+    res.render('recommend')
 });
 
 //extract form data, store it in a constant.
