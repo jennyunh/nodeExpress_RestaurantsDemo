@@ -44,7 +44,8 @@ app.get("/restaurants", function (req, res) {
 
     //2nd parameter for render is optional:
     //pass in an object that refers to any variables used in the template
-    res.render('restaurants', { numberOfRestaurants: storedRestaurants.length } )
+    res.render('restaurants', { numberOfRestaurants: storedRestaurants.length,
+    restaurants: storedRestaurants } )
 
 });
 
