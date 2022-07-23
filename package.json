@@ -1,10 +1,13 @@
 {
   "name": "web-development-complete-guide",
   "version": "1.0.0",
+  "homepage": "https://jennyunh.github.io/nodeExpress_RestaurantsDemo/",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "predeploy": "npm run build",
+   "deploy": "gh-pages -d build",
   },
   "keywords": [],
   "author": "Maximilian Schwarzmüller (Academind GmbH)",
@@ -14,6 +17,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "nodemon": "^2.0.7"
   }
 }
